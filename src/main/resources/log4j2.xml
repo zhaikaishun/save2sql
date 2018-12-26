@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+    <Properties>
+        <Property name="basePath">C:\\logs</Property>
+    </Properties>
+
+    <Appenders>
+        <RollingFile name="fileLogger" fileName="./logs/app-info.log"
+                     filePattern="./logs/app-info-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n</pattern>
+            </PatternLayout>
+            <SizeBasedTriggeringPolicy size="100 MB" />
+        </RollingFile>
+
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout   pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="me.kaishun" level="debug" additivity="true">
+            <appender-ref ref="fileLogger" level="debug" />
+        </Logger>
+        <Root level="debug" additivity="false">
+            <appender-ref ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

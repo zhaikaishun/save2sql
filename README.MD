@@ -1,0 +1,58 @@
+## 简介
+能将文件简单导入到mysql，sqlserver的工具，目前支持文件，文件夹，hdfs文件，以后会支持excel等文件，导入的
+字段名称为v0,v1,v2...，属性全为varchar(255) 表名为指定或者默认的文件夹（或者文件名）和时间的组合  
+优势在于：
+1. 相比自带的工具比较方便（前提学习使用还是有的）  
+2. 能容错，某几行出错也不影响整体导入，出错的几行也能部分导入
+
+## 环境  
+1. jdk1.8，如只有1.7需要自己编译
+2. 支持导入的mysql版本小于8  
+3. 支持大多数sqlserver版本
+
+## 使用方法  
+1. maven编译打包,或者使用idea打开，在idea内使用,或者在**jar备份**中下载（不保证最新）  
+2. 将jar包内的配置文件parameter.conf取出，需配置如下配置让后放回到jar包  
+```
+fs.defaultFS=192.xx.xx.xx:9000
+ip=192.xx.xx.xx
+user=xxx
+passwd=xxx
+port=3306
+dbName=xxx
+hiveOrMysql=sqlserver
+```
+其中  
+- **fs.defaultFs**：是hdfs的web开发路径，如果想将hdfs的数据导入到数据库，需要配置这个参数
+- **ip**：这是数据库的实例地址，如果有实例名，需要加两个反斜杠，例如 localhost\\\SQLEXPRESS
+- **user**：数据库的用户名
+- **passwd**：数据库密码
+- **port**：数据库端口号
+- **dbName**：数据库名,数据库名不要带中括号[]
+- **sqlserverOrMysql**：填写sqlserver或者mysql，表示分别入到sqlserver还是mysql中
+
+**运行命令：**  
+```aidl
+java -jar jar包全路径 -参数
+```
+其中参数有如下几种  
+- **-inputPath** 必填，数据的路径，可以是文件，也可以是文件名，或者是hdfs路径  
+- **-sourceType** 选填，默认是text，可解析普通的文件，gz文件。 或者填写hdfs，表示读取的是hdfs上的数据
+- **-separator** 选填，程序会通过文件的前两行自动判断分隔符  
+- **tableName** 选填，我们可以给表指定一个名称，若不填写，表名默认是文件或者文件夹名称+时间组成的字符串
+运行举例  
+```aidl
+java -jar jar包全路径 -inputPath F:\ccf
+
+```
+上述命令会将F:\ccf文件夹下的所有文件读取，并且保存到数据库中，表明由时间和文件夹名称决定，叫做ccf_MMddHHmmss
+
+## 日志查看：  
+当前文件夹下，logs目录
+
+## 将来会做
+1. excel解析入库（一定）  
+2. 对mysql8版本的支持
+3. 可能会做一些按照模板表入库（可能性很小，因为这个工具的目的就是做一个简单的入库小工具）
+
+
