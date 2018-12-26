@@ -2,7 +2,7 @@
 能将文件简单导入到mysql，sqlserver的工具，目前支持文件，文件夹，hdfs文件，以后会支持excel等文件，导入的
 字段名称为v0,v1,v2...，属性全为varchar(255) 表名为指定或者默认的文件夹（或者文件名）和时间的组合  
 优势在于：
-1. 相比自带的工具比较方便（前提学习使用还是有的）  
+1. 相比自带的工具比较方便（前提学习使用还是需要的）  
 2. 能容错，某几行出错也不影响整体导入，出错的几行也能部分导入
 
 ## 环境  
@@ -11,7 +11,7 @@
 3. 支持大多数sqlserver版本
 
 ## 使用方法  
-1. maven编译打包,或者使用idea打开，在idea内使用,或者在**jar备份**中下载（不保证最新）  
+1. maven编译打包,或者使用idea打开，在idea内使用,或者在[jar备份](https://github.com/zhaikaishun/save2sql/tree/master/jar%E5%A4%87%E4%BB%BD/20181226)中下载（不保证最新）  
 2. 将jar包内的配置文件parameter.conf取出，需配置如下配置让后放回到jar包  
 ```
 fs.defaultFS=192.xx.xx.xx:9000
