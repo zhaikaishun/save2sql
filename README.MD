@@ -14,7 +14,7 @@
 
 ## 3. 使用方法 
 ### 3.1 编译打包或者下载 
-maven编译打包,或者使用idea打开，在idea内使用,或者在jar备份中下载（不保证最新）  
+maven编译打包,或者使用idea打开，在idea内使用,或者在[jar备份](https://github.com/zhaikaishun/save2sql/tree/master/jar%E5%A4%87%E4%BB%BD/)中下载（lib目录也需要下载，不保证最新版本）  
 ### 3.2  配置数据库相关信息
 将jar包内的配置文件parameter.conf取出，需配置如下配置让后放回到jar包  
 ```
@@ -62,7 +62,7 @@ java -jar jar包全路径 -inputPath F:\ccf
 4. log4j2  
 
 ### 6. 鸣谢
-shanfeng，指导了数据入库，性能得到很大提升
+shanfeng  
 caohao
 
 
